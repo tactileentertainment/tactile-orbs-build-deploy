@@ -1,0 +1,14 @@
+---
+description: Installs semantic-release with dependencies and then executes it to generate and set the version tag
+
+parameters:
+  slack-webhook:
+    type: string
+    description: 'URL to Slack webhook'
+
+steps:
+  - run:
+      environment:
+        SLACK_WEBHOOK: << parameters.slack-webhook >>
+      name: Run semantic-release to tag version
+      command: << include(scripts/tag-release.sh) >>
