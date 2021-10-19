@@ -1,7 +1,7 @@
 buildPushDockerImage() {
   install
   npx build-docker-image --name "$CIRCLE_PROJECT_REPONAME" --build-id "CI-<< pipeline.number >>"
-  # shellcheck source=.
+  # shellcheck disable=SC1090
   source "$BASH_ENV"
 }
 
