@@ -1,0 +1,7 @@
+---
+description: Installs CI-CD-tools and runs build-docker-image
+
+steps:
+  - run:
+      name: Run CI-CD-tools/build-docker-image to build and push image
+      command: << include(scripts/build-push-docker.sh) >>

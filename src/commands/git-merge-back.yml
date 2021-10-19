@@ -1,0 +1,22 @@
+---
+description: Keep branches in sync - merge a 'trigger branch' back in to 'destination branch'
+
+parameters:
+  merge-trigger-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+  merge-destination-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+
+steps:
+  - when:
+      condition:
+        equal: [ << pipeline.git.branch >>, << parameters.merge-trigger-branch >> ]
+      steps:
+        - run:
+            environment:
+              MERGE_TRIGGER_BRANCH: << parameters.merge-trigger-branch >>
+              MERGE_DESTINATION_BRANCH: << parameters.merge-destination-branch >>
+            name: Merge << parameters.merge-trigger-branch >> back in to << parameters.merge-destination-branch >>
+            command: << include(scripts/git-merge-back.sh) >>
