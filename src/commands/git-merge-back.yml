@@ -12,7 +12,7 @@ parameters:
 steps:
   - when:
       condition:
-        equal: [ << pipeline.git.branch >>, << parameters.merge-trigger-branch >> ]
+        equal: [ $CIRCLE_BRANCH, << parameters.merge-trigger-branch >> ]
       steps:
         - run:
             environment:
