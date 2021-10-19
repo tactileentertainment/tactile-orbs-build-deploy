@@ -3,6 +3,6 @@ setup() {
     source ./src/scripts/create-sentry-release.sh
 }
 
-@test '1: Install dependencies' {
+@test 'create-sentry-release: Install dependencies' {
     install
 }

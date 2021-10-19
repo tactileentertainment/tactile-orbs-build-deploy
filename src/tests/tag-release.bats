@@ -3,6 +3,6 @@ setup() {
     source ./src/scripts/tag-release.sh
 }
 
-@test '1: Install dependencies' {
+@test 'tag-release: Install dependencies' {
     install
 }

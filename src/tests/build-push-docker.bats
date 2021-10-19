@@ -3,6 +3,6 @@ setup() {
     source ./src/scripts/build-push-docker.sh
 }
 
-@test '1: Install dependencies' {
+@test 'build-push-docker: Install dependencies' {
     install
 }
