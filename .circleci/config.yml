@@ -42,6 +42,7 @@ workflows:
       - bats/run:
           exec_environment: bats-executor
           path: ./src/tests
+          context: github-package-install
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: tactileentertainment/build-deploy
