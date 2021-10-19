@@ -1,3 +1,4 @@
+---
 version: 2.1
 
 orbs:
@@ -27,8 +28,8 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
+      - orb-tools/lint  # Lint Yaml files
+      - orb-tools/pack  # Pack orb source
       - shellcheck/check:
           dir: ./src/scripts
           exclude: SC2148
@@ -38,7 +39,7 @@ workflows:
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: tactileentertainment/build-deploy
-          context: orb-publishing # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          context: orb-publishing  # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires:
             - orb-tools/lint
             - orb-tools/pack
