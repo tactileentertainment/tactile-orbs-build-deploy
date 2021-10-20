@@ -1,5 +1,6 @@
 tagRelease() {
   install
+  copyConfiguration
   npx semantic-release
 }
 
@@ -10,6 +11,12 @@ install() {
     @semantic-release/git@9 \
     conventional-changelog-conventionalcommits@4 \
     semantic-release-slack-bot@2
+}
+
+copyConfiguration() {
+  if [ "$SEMANTIC_RELEASE_CONFIG_PATH" != "release.config.js" ]; then
+    cp "$SEMANTIC_RELEASE_CONFIG_PATH" release.config.js
+  fi
 }
 
 # Will not run if sourced for bats-core tests.
