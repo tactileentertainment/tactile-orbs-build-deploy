@@ -1,0 +1,33 @@
+---
+description: Build and trigger deploy of service
+
+executor: build-deploy
+
+parameters:
+  slack-webhook:
+    type: string
+    description: URL to Slack webhook
+  release-branches:
+    type: string
+    description: Allow releasing and building from list of space delimited names of branches
+  environment:
+    type: string
+    description: Environment to set on the Sentry release
+  merge-trigger-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+  merge-destination-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+
+steps:
+  - checkout
+  - tag-release:
+      slack-webhook: << parameters.slack-webhook >>
+  - build-push-docker:
+      release-branches: << parameters.release-branches >>
+  - create-sentry-release:
+      environment: << parameters.environment >>
+  - git-merge-back:
+      merge-trigger-branch: << parameters.merge-trigger-branch >>
+      merge-destination-branch: << parameters.merge-destination-branch >>
