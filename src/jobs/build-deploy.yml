@@ -4,6 +4,10 @@ description: Build and trigger deploy of service
 executor: build-deploy
 
 parameters:
+  semantic-release-config-path:
+    type: string
+    default: 'release.config.js'
+    description: 'Path to configuration file for semantic release'
   slack-webhook:
     type: string
     description: URL to Slack webhook
@@ -23,6 +27,7 @@ parameters:
 steps:
   - checkout
   - tag-release:
+      semantic-release-config-path: << parameters.semantic-release-config-path >>
       slack-webhook: << parameters.slack-webhook >>
   - build-push-docker:
       release-branches: << parameters.release-branches >>
