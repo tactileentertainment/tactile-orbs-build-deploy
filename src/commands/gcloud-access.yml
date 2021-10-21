@@ -1,0 +1,7 @@
+---
+description: Set up Google Cloud access
+
+steps:
+  - run:
+      name: Set up Google Cloud access
+      command: << include(scripts/gcloud-access.sh) >>

@@ -1,0 +1,15 @@
+---
+description: Google Cloud executor
+
+docker:
+  - image: google/cloud-sdk:<< parameters.gcloud-version >>
+
+working_directory: ~/app
+
+parameters:
+  gcloud-version:
+    default: latest
+    description: >
+      Pick a specific image version:
+      https://hub.docker.com/r/google/cloud-sdk/tags
+    type: string
