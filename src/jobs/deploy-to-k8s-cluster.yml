@@ -1,6 +1,6 @@
 ---
 description: >
-  Deploy (dryrun) to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >>
+  Deploy to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >> and prune
   NB: Attaches workspace
 
 executor: gcloud
@@ -15,12 +15,18 @@ parameters:
   cluster-zone:
     type: string
     description: Zone of cluster
+  prune-selector:
+    type: string
+    description: >
+      Selector for pruning.
+      See section on pruning here for more information: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
 
 steps:
   - attach_workspace:
       at: ~/app
   - gcloud-access
-  - dryrun-to-k8s-cluster:
+  - deploy-to-k8s-cluster:
       configuration-path: << parameters.configuration-path >>
       cluster-name: << parameters.cluster-name >>
       cluster-zone: << parameters.cluster-zone >>
+      prune-selector: << parameters.prune-selector >>
