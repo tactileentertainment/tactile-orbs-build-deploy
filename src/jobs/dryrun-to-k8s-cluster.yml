@@ -1,20 +1,24 @@
 ---
-description: Dryrun deploy to cluster << parameters.cluster >> in zone << parameters.zone >>
+description: Deploy (dryrun) to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >>
 
 executor: gcloud
 
 parameters:
-  zone:
+  configuration-path:
     type: string
-    description: Zone of cluster
-  cluster:
+    description: Path to JSON or YAML to apply to the cluster
+  cluster-name:
     type: string
     description: Name of cluster
+  cluster-zone:
+    type: string
+    description: Zone of cluster
 
 steps:
   - attach_workspace:
       at: ~/app
   - gcloud-access
   - dryrun-to-k8s-cluster:
-      zone: << parameters.zone >>
-      cluster: << parameters.cluster >>
+      configuration-path: << parameters.configuration-path >>
+      cluster-name: << parameters.cluster-name >>
+      cluster-zone: << parameters.cluster-zone >>
