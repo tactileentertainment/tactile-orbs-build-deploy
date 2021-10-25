@@ -1,5 +1,9 @@
 ---
-description: Installs sentry-cli and executes it to make a release
+description: >
+  Installs sentry-cli and executes it to make a release.
+
+  This expects the following environment variables
+    * `RELEASE_TAG` - Used as the version for the Sentry release
 
 parameters:
   environment:
