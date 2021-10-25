@@ -1,0 +1,14 @@
+---
+description: >
+  Configure access to Google Cloud, utilising a specific version of google/cloud-sdk
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  workflows:
+    the-workflow:
+      jobs:
+        - build-deploy/gcloud-access:
+            gcloud-version: 361.0.0
