@@ -1,0 +1,17 @@
+---
+description: >
+  Installs sentry-cli and executes it to make a release.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  workflows:
+    the-workflow:
+      jobs:
+        - build-deploy/update-config-repository:
+            config-repository: git@github.com:organisation/project.git
+            config-branch: cluster/production
+            config-update-command: echo 'magic'

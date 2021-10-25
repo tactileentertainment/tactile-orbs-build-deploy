@@ -1,5 +1,9 @@
 ---
-description: Update configuration repository to trigger deployment
+description: >
+  Update configuration repository to trigger deployment.
+
+  This expects the following environment variables
+    * `IMAGE_TAG` - Used for committing and tagging in the configuration repository
 
 parameters:
   config-repository:
