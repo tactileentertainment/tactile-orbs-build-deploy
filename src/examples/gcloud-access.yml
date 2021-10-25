@@ -8,8 +8,14 @@ usage:
   orbs:
     build-deploy: tactileentertainment/build-deploy@x.y.z
 
+  jobs:
+    the-job:
+      executor: build-deploy
+      steps:
+        - build-deploy/gcloud-access:
+            gcloud-version: 361.0.0
+
   workflows:
     the-workflow:
       jobs:
-        - build-deploy/gcloud-access:
-            gcloud-version: 361.0.0
+        - the-job

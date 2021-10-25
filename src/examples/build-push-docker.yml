@@ -8,8 +8,14 @@ usage:
   orbs:
     build-deploy: tactileentertainment/build-deploy@x.y.z
 
+  jobs:
+    the-job:
+      executor: build-deploy
+      steps:
+        - build-deploy/build-push-docker:
+            release-branches: master
+
   workflows:
     the-workflow:
       jobs:
-        - build-deploy/build-push-docker:
-            release-branches: master
+        - the-job
