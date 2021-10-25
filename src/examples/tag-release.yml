@@ -1,6 +1,7 @@
 ---
 description: >
   Installs semantic-release and generate and set version tag
+
 usage:
   version: 2.1
 
