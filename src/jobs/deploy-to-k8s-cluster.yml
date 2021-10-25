@@ -1,6 +1,7 @@
 ---
 description: >
-  Deploy to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >> and prune
+  Deploy to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >> and prune.
+
   NB: Attaches workspace
 
 executor: gcloud

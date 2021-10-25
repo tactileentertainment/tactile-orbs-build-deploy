@@ -1,0 +1,24 @@
+---
+description: >
+  Deploy a configuration to a cluster and prune.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  jobs:
+    the-job:
+      executor: gcloud
+      steps:
+        - build-deploy/deploy-to-k8s-cluster:
+            configuration-path: some-path.yml
+            cluster-name: some-cluster
+            cluster-zone: us-east1-b
+            prune-selector: app.kubernetes.io/name=project-name
+
+  workflows:
+    the-workflow:
+      jobs:
+        - the-job

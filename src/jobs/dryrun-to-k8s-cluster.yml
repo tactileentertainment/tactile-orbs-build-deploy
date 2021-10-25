@@ -1,7 +1,8 @@
 ---
 description: >
-  Deploy (dryrun) to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >>
-  NB: Attaches workspace
+  Deploy (dryrun) to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >>.
+
+  NB: Attaches workspace.
 
 executor: gcloud
 
