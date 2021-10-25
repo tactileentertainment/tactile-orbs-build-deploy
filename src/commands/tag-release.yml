@@ -1,5 +1,6 @@
 ---
-description: Installs semantic-release with dependencies and then executes it to generate and set the version tag
+description: >
+  Installs semantic-release with dependencies and then executes it to generate and set the version tag.
 
 parameters:
   semantic-release-config-path:
