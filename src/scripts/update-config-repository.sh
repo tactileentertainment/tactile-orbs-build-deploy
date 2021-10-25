@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 updateConfigRepository() {
   cd ..
   git clone "$CONFIG_REPOSITORY" config-repository

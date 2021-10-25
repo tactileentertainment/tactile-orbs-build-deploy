@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 createSentryRelease() {
   install
   SENTRY_PROJECT=$CIRCLE_PROJECT_REPONAME

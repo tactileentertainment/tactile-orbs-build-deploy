@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 buildPushDockerImage() {
   install
   npx build-docker-image --name "$CIRCLE_PROJECT_REPONAME" --build-id "CI-$CIRCLE_BUILD_NUM"

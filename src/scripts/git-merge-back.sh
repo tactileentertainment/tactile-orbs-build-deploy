@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 gitMergeBack() {
   git config --global user.email tactile-deploy@tactile.dk
   git config --global user.name "Tactile Deploy"
