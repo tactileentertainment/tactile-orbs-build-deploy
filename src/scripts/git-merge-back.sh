@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 gitMergeBack() {
-  git config --global user.email tactile-deploy@tactile.dk
-  git config --global user.name "Tactile Deploy"
+  git config --global user.email "$GIT_USER_EMAIL"
+  git config --global user.name "$GIT_USER_NAME"
   git fetch --all
   git checkout "$MERGE_DESTINATION_BRANCH"
-  git merge origin "MERGE_TRIGGER_BRANCH"
+  git merge origin "$MERGE_TRIGGER_BRANCH"
   git push origin "$MERGE_DESTINATION_BRANCH"
   git checkout "$MERGE_TRIGGER_BRANCH"
 }

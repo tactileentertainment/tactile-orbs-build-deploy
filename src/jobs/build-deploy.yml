@@ -17,6 +17,12 @@ parameters:
   environment:
     type: string
     description: Environment to set on the Sentry release
+  git-user-email:
+    type: string
+    description: The email address to associate with the commit
+  git-user-name:
+    type: string
+    description: The user name to associate with the commit
   merge-trigger-branch:
     type: string
     default: a-branch-that-shall-never-exist
@@ -34,5 +40,7 @@ steps:
   - create-sentry-release:
       environment: << parameters.environment >>
   - git-merge-back:
+      git-user-email: << parameters.git-user-email >>
+      git-user-name: << parameters.git-user-name >>
       merge-trigger-branch: << parameters.merge-trigger-branch >>
       merge-destination-branch: << parameters.merge-destination-branch >>
