@@ -1,5 +1,14 @@
 ---
-description: Installs CI-CD-tools and runs build-docker-image
+description: >
+  Installs CI-CD-tools and runs build-docker-image.
+
+  This expects the following environment variables
+    * `GITHUB_TOKEN` - Used to install CI-CD-tools, and passed to Docker when building image
+    * `GCP_PROJECT` - Use in the image tag
+
+  This exports the following environment variables
+    * `RELEASE_TAG` - Generated release version
+    * `IMAGE_TAG` - Generated image tag; same as `RELEASE_TAG` with branch appended
 
 parameters:
   release-branches:

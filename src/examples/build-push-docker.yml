@@ -1,0 +1,15 @@
+---
+description: >
+  Installs CI-CD-tools and runs build-docker-image.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  workflows:
+    the-workflow:
+      jobs:
+        - build-deploy/build-push-docker:
+            release-branches: master
