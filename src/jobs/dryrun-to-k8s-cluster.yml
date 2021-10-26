@@ -4,9 +4,17 @@ description: >
 
   NB: Attaches workspace.
 
-executor: gcloud
+executor:
+  name: gcloud
+  gcloud-version: << parameters.gcloud-version >>
 
 parameters:
+  gcloud-version:
+    default: latest
+    description: >
+      Pick a specific image version:
+      https://hub.docker.com/r/google/cloud-sdk/tags
+    type: string
   configuration-path:
     type: string
     description: Path to JSON or YAML to apply to the cluster
