@@ -7,7 +7,7 @@ updateConfigRepository() {
   cd config-repository
   git checkout master
 
-  bash "$CONFIG_UPDATE_COMMAND"
+  bash -c "$CONFIG_UPDATE_COMMAND"
 
   git commit -m "build(release): $CIRCLE_PROJECT_REPONAME $IMAGE_TAG" -a
   git tag -a "$IMAGE_TAG" -m "$CIRCLE_PROJECT_REPONAME $IMAGE_TAG"
