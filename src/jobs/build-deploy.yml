@@ -1,13 +1,14 @@
 ---
-description: Build and trigger deploy of service
+description: .
+  Build and trigger deploy of service.
 
 executor: build-deploy
 
 parameters:
   semantic-release-config-path:
     type: string
-    default: 'release.config.js'
-    description: 'Path to configuration file for semantic release'
+    default: release.config.js
+    description: Path to configuration file for semantic release
   slack-webhook:
     type: string
     description: URL to Slack webhook
@@ -17,6 +18,15 @@ parameters:
   environment:
     type: string
     description: Environment to set on the Sentry release
+  config-repository:
+    type: string
+    description: Git url to configuration repository
+  config-branch:
+    type: string
+    description: Branch in configuration repository to sync 'master' to
+  config-update-command:
+    type: string
+    description: Command to run in the configuration repository
   git-user-email:
     type: string
     description: The email address to associate with the commit
@@ -26,19 +36,32 @@ parameters:
   merge-trigger-branch:
     type: string
     default: a-branch-that-shall-never-exist
+    description: Trigger merge if current branch is this branch
   merge-destination-branch:
     type: string
     default: a-branch-that-shall-never-exist
+    description: Merge from trigger branch to this branch
 
 steps:
+  - add_ssh_keys
+
   - checkout
+
   - tag-release:
       semantic-release-config-path: << parameters.semantic-release-config-path >>
       slack-webhook: << parameters.slack-webhook >>
+
   - build-push-docker:
       release-branches: << parameters.release-branches >>
+
   - create-sentry-release:
       environment: << parameters.environment >>
+
+  - update-config-repository:
+      config-repository: << parameters.config-repository >>
+      config-branch: << parameters.config-branch >>
+      config-update-command: << parameters.config-update-command >>
+
   - git-merge-back:
       git-user-email: << parameters.git-user-email >>
       git-user-name: << parameters.git-user-name >>
