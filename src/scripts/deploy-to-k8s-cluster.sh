@@ -2,6 +2,7 @@
 
 deployToK8sCluster() {
   gcloud container clusters get-credentials --zone "$CLUSTER_ZONE" "$CLUSTER_NAME"
+  kubectl version
   kubectl apply --cluster gke_tactile-webservices_"$CLUSTER_ZONE"_"$CLUSTER_NAME" -f "$CONFIGURATION_PATH" --validate --prune --selector "$PRUNE_SELECTOR"
 }
 
