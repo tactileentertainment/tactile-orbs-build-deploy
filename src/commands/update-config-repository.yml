@@ -1,0 +1,26 @@
+---
+description: >
+  Update configuration repository to trigger deployment.
+
+  This expects the following environment variables
+    * `IMAGE_TAG` - Used for committing and tagging in the configuration repository
+
+parameters:
+  config-repository:
+    type: string
+    description: Git url to configuration repository
+  config-branch:
+    type: string
+    description: Branch in configuration repository to sync 'master' to
+  config-update-command:
+    type: string
+    description: Command to run in the configuration repository
+
+steps:
+  - run:
+      environment:
+        CONFIG_REPOSITORY: << parameters.config-repository >>
+        CONFIG_BRANCH: << parameters.config-branch >>
+        CONFIG_UPDATE_COMMAND: << parameters.config-update-command >>
+      name: Update configuration repository to trigger deployment
+      command: << include(scripts/update-config-repository.sh) >>

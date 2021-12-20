@@ -1,0 +1,24 @@
+---
+description: >
+  Build and trigger deploy of service.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  workflows:
+    the-workflow:
+      jobs:
+        - build-deploy/build-deploy:
+            slack-webhook: https://hooks.slack.com/hook/path/
+            release-branches: release
+            environment: production
+            config-repository: git@github.com:organisation/project.git
+            config-branch: cluster/production
+            config-update-command: echo 'magic'
+            git-user-email: user@example.com
+            git-user-name: User Example
+            merge-trigger-branch: release
+            merge-destination-branch: master

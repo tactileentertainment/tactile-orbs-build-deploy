@@ -1,0 +1,33 @@
+---
+description: >
+  Keep branches in sync - merge a 'trigger branch' back in to 'destination branch'.
+
+parameters:
+  git-user-email:
+    type: string
+    description: The email address to associate with the commit
+  git-user-name:
+    type: string
+    description: The user name to associate with the commit
+  merge-trigger-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+    description: Trigger merge if current branch is this branch
+  merge-destination-branch:
+    type: string
+    default: a-branch-that-shall-never-exist
+    description: Merge from trigger branch to this branch
+
+steps:
+  - when:
+      condition:
+        equal: [ $CIRCLE_BRANCH, << parameters.merge-trigger-branch >> ]
+      steps:
+        - run:
+            environment:
+              GIT_USER_EMAIL: << parameters.git-user-email >>
+              GIT_USER_NAME: << parameters.git-user-name >>
+              MERGE_TRIGGER_BRANCH: << parameters.merge-trigger-branch >>
+              MERGE_DESTINATION_BRANCH: << parameters.merge-destination-branch >>
+            name: Merge << parameters.merge-trigger-branch >> back in to << parameters.merge-destination-branch >>
+            command: << include(scripts/git-merge-back.sh) >>

@@ -1,0 +1,12 @@
+---
+description: >
+  Configure access to Google Cloud.
+
+  This expects the follow environment variables
+  * `GCP_PROJECT` - The project name
+  * `GCP_SERVICE_KEY` - The service account key
+
+steps:
+  - run:
+      name: Set up Google Cloud access
+      command: << include(scripts/gcloud-access.sh) >>

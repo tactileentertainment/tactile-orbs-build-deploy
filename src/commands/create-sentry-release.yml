@@ -1,0 +1,18 @@
+---
+description: >
+  Installs sentry-cli and executes it to make a release.
+
+  This expects the following environment variables
+    * `RELEASE_TAG` - Used as the version for the Sentry release
+
+parameters:
+  environment:
+    type: string
+    description: Environment to set on the Sentry release
+
+steps:
+  - run:
+      environment:
+        ENVIRONMENT: << parameters.environment >>
+      name: Run sentry-cli to make release
+      command: << include(scripts/create-sentry-release.sh) >>

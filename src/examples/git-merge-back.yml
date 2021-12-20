@@ -1,0 +1,24 @@
+---
+description: >
+  Keep branches in sync - merge 'staging' back to 'master' with provided git user configuration.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  jobs:
+    the-job:
+      executor: build-deploy
+      steps:
+        - build-deploy/git-merge-back:
+            git-user-email: user@example.com
+            git-user-name: User Example
+            merge-trigger-branch: staging
+            merge-destination-branch: master
+
+  workflows:
+    the-workflow:
+      jobs:
+        - the-job

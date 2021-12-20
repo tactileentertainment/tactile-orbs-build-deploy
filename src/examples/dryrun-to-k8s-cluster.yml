@@ -1,0 +1,23 @@
+---
+description: >
+  Dryrun a configuration against a cluster.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  jobs:
+    the-job:
+      executor: gcloud
+      steps:
+        - build-deploy/dryrun-to-k8s-cluster:
+            configuration-path: some-path.yml
+            cluster-name: some-cluster
+            cluster-zone: us-east1-b
+
+  workflows:
+    the-workflow:
+      jobs:
+        - the-job

@@ -1,0 +1,21 @@
+---
+description: >
+  Installs sentry-cli and executes it to make a release.
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  jobs:
+    the-job:
+      executor: build-deploy
+      steps:
+        - build-deploy/create-sentry-release:
+            environment: production
+
+  workflows:
+    the-workflow:
+      jobs:
+        - the-job

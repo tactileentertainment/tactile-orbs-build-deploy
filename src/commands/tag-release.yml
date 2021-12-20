@@ -1,0 +1,20 @@
+---
+description: >
+  Installs semantic-release with dependencies and then executes it to generate and set the version tag.
+
+parameters:
+  semantic-release-config-path:
+    type: string
+    default: 'release.config.js'
+    description: 'Path to configuration file for semantic release'
+  slack-webhook:
+    type: string
+    description: 'URL to Slack webhook'
+
+steps:
+  - run:
+      environment:
+        SEMANTIC_RELEASE_CONFIG_PATH: << parameters.semantic-release-config-path >>
+        SLACK_WEBHOOK: << parameters.slack-webhook >>
+      name: Run semantic-release to tag version
+      command: << include(scripts/tag-release.sh) >>

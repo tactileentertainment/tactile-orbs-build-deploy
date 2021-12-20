@@ -1,0 +1,23 @@
+---
+description: >
+  Installs CI-CD-tools and runs build-docker-image.
+
+  This expects the following environment variables
+    * `GITHUB_TOKEN` - Used to install CI-CD-tools, and passed to Docker when building image
+    * `GCP_PROJECT` - Use in the image tag
+
+  This exports the following environment variables
+    * `RELEASE_TAG` - Generated release version
+    * `IMAGE_TAG` - Generated image tag; same as `RELEASE_TAG` with branch appended
+
+parameters:
+  release-branches:
+    type: string
+    description: Allow releasing and building from list of space delimited names of branches
+
+steps:
+  - run:
+      environment:
+        RELEASE_BRANCHES: << parameters.release-branches >>
+      name: Run CI-CD-tools/build-docker-image to build and push image
+      command: << include(scripts/build-push-docker.sh) >>

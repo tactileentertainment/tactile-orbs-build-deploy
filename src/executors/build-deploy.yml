@@ -1,0 +1,15 @@
+---
+description: Machine executor for a better Docker build experience
+
+machine:
+  image: ubuntu-2004:<< parameters.machine-version >>
+
+working_directory: ~/app
+
+parameters:
+  machine-version:
+    default: 202107-02
+    description: >
+      Pick a specific machine image version:
+      https://circleci.com/docs/2.0/configuration-reference/#available-machine-images
+    type: string

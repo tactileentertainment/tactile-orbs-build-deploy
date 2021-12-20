@@ -1,0 +1,28 @@
+---
+description: Deploy to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >> and prune
+
+parameters:
+  configuration-path:
+    type: string
+    description: Path to JSON or YAML to apply to the cluster
+  cluster-name:
+    type: string
+    description: Name of cluster
+  cluster-zone:
+    type: string
+    description: Zone of cluster
+  prune-selector:
+    type: string
+    description: >
+      Selector for pruning.
+      See section on pruning here for more information: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
+
+steps:
+  - run:
+      environment:
+        CONFIGURATION_PATH: << parameters.configuration-path >>
+        CLUSTER_NAME: << parameters.cluster-name >>
+        CLUSTER_ZONE: << parameters.cluster-zone >>
+        PRUNE_SELECTOR: << parameters.prune-selector >>
+      name: Deploy to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >> and prune
+      command: << include(scripts/deploy-to-k8s-cluster.sh) >>

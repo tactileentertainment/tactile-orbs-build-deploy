@@ -1,0 +1,35 @@
+---
+description: >
+  Deploy (dryrun) to cluster << parameters.cluster-name >> in zone << parameters.cluster-zone >>.
+
+  NB: Attaches workspace.
+
+executor:
+  name: gcloud
+  gcloud-version: << parameters.gcloud-version >>
+
+parameters:
+  gcloud-version:
+    default: latest
+    description: >
+      Pick a specific image version:
+      https://hub.docker.com/r/google/cloud-sdk/tags
+    type: string
+  configuration-path:
+    type: string
+    description: Path to JSON or YAML to apply to the cluster
+  cluster-name:
+    type: string
+    description: Name of cluster
+  cluster-zone:
+    type: string
+    description: Zone of cluster
+
+steps:
+  - attach_workspace:
+      at: ~/app
+  - gcloud-access
+  - dryrun-to-k8s-cluster:
+      configuration-path: << parameters.configuration-path >>
+      cluster-name: << parameters.cluster-name >>
+      cluster-zone: << parameters.cluster-zone >>

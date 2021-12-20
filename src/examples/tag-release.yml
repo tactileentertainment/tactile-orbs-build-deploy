@@ -1,0 +1,21 @@
+---
+description: >
+  Installs semantic-release and generate and set version tag
+
+usage:
+  version: 2.1
+
+  orbs:
+    build-deploy: tactileentertainment/build-deploy@x.y.z
+
+  jobs:
+    the-job:
+      executor: build-deploy
+      steps:
+        - build-deploy/tag-release:
+            slack-webhook: https://hooks.slack.com/hook/path/
+
+  workflows:
+    the-workflow:
+      jobs:
+        - the-job
