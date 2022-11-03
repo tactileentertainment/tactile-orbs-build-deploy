@@ -9,7 +9,7 @@ buildPushDockerImage() {
 
 install() {
   echo -e "@tactileentertainment:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > ~/.npmrc
-  npm install -g @tactileentertainment/ci-cd-tools@1.0.1
+  npm install -g @tactileentertainment/ci-cd-tools@1.1.0
 }
 
 # Will not run if sourced for bats-core tests.
